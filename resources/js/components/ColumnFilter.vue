@@ -17,24 +17,6 @@
                 >
                 </option>
             </select>
-            <select
-                    :dusk="filter.name + '-operator-filter-select'"
-                    class="block w-full form-control-sm form-select mr-2"
-                    v-model="operator"
-                    @change="handleChange"
-            >
-                <option
-                        value=""
-                        selected
-                >&mdash;</option>
-                <option
-                        v-for="(value, key) in this.getOption('operators')"
-                        :value="key"
-                        v-html="value"
-                >
-
-                </option>
-            </select>
 
             <input type="text"
                    v-model="data"
@@ -64,13 +46,13 @@
         data() {
             return {
                 column : '',
-                operator : '',
+                operator : '=',
                 data : ''
             }
         },
         mounted() {
             this.column = this.value.column || ''
-            this.operator = this.value.operator || ''
+            this.operator = '='
             this.data = this.value.data || ''
         },
         methods: {
@@ -80,7 +62,7 @@
                     operator : this.operator,
                     data : this.data
                 }
-                if(! this.column || ! this.data)
+                if(! this.column || ! this.operator || ! this.data)
                     newValue = ""
 
                 let shouldRaise = newValue !== this.value;
