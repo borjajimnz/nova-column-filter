@@ -17,31 +17,11 @@
                 >
                 </option>
             </select>
-            <select
-                    :dusk="filter.name + '-operator-filter-select'"
-                    class="block w-full form-control-sm form-select mr-2"
-                    v-model="operator"
-                    @change="handleChange"
-            >
-                <option
-                        value=""
-                        selected
-                >&mdash;</option>
-                <option
-                        v-for="(value, key) in this.getOption('operators')"
-                        :value="key"
-                        v-html="value"
-                >
-
-                </option>
-            </select>
-
             <input type="text"
                    v-model="data"
                    class="block w-full form-control-sm form-input form-input-bordered"
                    @change="handleChange"
             >
-
         </div>
     </div>
 
@@ -64,7 +44,7 @@
         data() {
             return {
                 column : '',
-                operator : '',
+                operator : '=',
                 data : ''
             }
         },
