@@ -7,7 +7,7 @@
             <select
                     :dusk="filter.name + '-column-filter-select'"
                     class="block w-full form-control-sm form-select mr-2"
-                    @change="handleChange"
+                    @change="resetValue"
                     v-model="column">
                 <option value="">&mdash;</option>
                 <option
@@ -22,14 +22,14 @@
             <input type="text"
                    v-model="data"
                    class="block w-full form-control-sm form-input form-input-bordered"
-                   @change="handleChange()">
+                   @change="handleChange">
           </template>
 
           <template v-else>
             <input type="text"
                    v-model="data"
                    class="block w-full form-control-sm form-input form-input-bordered"
-                   @change="handleChange()">
+                   @change="handleChange">
           </template>
 
         </div>
@@ -69,6 +69,8 @@
             handleChange : function (event){
 
               const selectedOption = this.getOption('columns')[this.column];
+              console.log(JSON.stringify(this.getOption('columns')))
+              console.log(selectedOption)
               if (selectedOption) {
                 this.inputType = selectedOption.input_type;
               } else {
@@ -106,6 +108,9 @@
 
                 return null;
             },
+          resetValue(){
+              this.data = ''
+          }
         },
         computed: {
             filter() {
