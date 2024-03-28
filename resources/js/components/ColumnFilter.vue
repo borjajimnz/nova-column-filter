@@ -66,18 +66,6 @@
         },
         methods: {
             handleChange : function (event){
-
-              const selectedOption = this.getOption('columns')[this.column];
-              console.log(JSON.stringify(this.getOption('columns')))
-              console.log(selectedOption)
-              if (selectedOption) {
-                this.inputType = selectedOption.input_type;
-              } else {
-                this.inputType = 'text';
-              }
-
-              console.log("selected: " + this.inputType)
-
                 let newValue = {
                     column : this.column,
                     operator : this.operator,
@@ -111,6 +99,14 @@
             },
           resetValue(){
               this.data = ''
+
+            const selectedOption = this.getOption('columns')[this.column];
+            if (selectedOption) {
+              this.inputType = selectedOption.input_type;
+            } else {
+              this.inputType = 'text';
+            }
+
           }
         },
         computed: {
