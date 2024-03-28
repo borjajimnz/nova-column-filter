@@ -13,16 +13,25 @@
                 <option
                         v-for="(value, key) in this.getOption('columns')"
                         :value="key"
-                        v-html="value"
+                        v-html="value.name"
+                        @change="handleInput"
                 >
                 </option>
             </select>
 
+          <template v-if="inputType === 'number'">
             <input type="text"
                    v-model="data"
                    class="block w-full form-control-sm form-input form-input-bordered"
-                   @change="handleChange"
-            >
+                   @change="handleChange()">
+          </template>
+
+          <template v-else>
+            <input type="text"
+                   v-model="data"
+                   class="block w-full form-control-sm form-input form-input-bordered"
+                   @change="handleChange()">
+          </template>
 
         </div>
     </div>
@@ -47,16 +56,19 @@
             return {
                 column : '',
                 operator : '=',
-                data : ''
+                data : '',
+                inputType : 'text',
             }
         },
         mounted() {
             this.column = this.value.column || ''
             this.operator = '='
+            this.inputType = 'text'
             this.data = this.value.data || ''
         },
         methods: {
             handleChange : function (event){
+              this.data = ''
                 let newValue = {
                     column : this.column,
                     operator : this.operator,
@@ -80,14 +92,18 @@
 
                 if(key)
                     return this.options[key].value;
-                
+
                 let obj = _.find(this.options, (o) => o.value === name)
 
                 if(obj)
                     return _.omit(obj, 'value');
 
                 return null;
-            }
+            },
+
+          handleInput : function (type){
+            this.type = type
+          },
         },
         computed: {
             filter() {
