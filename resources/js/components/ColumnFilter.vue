@@ -24,7 +24,6 @@
                    class="block w-full form-control-sm form-input form-input-bordered"
                    @change="handleChange">
           </template>
-
           <template v-else>
             <input type="text"
                    v-model="data"
@@ -76,6 +75,8 @@
               } else {
                 this.inputType = 'text';
               }
+
+              console.log("selected: " + this.inputType)
 
                 let newValue = {
                     column : this.column,
