@@ -67,14 +67,16 @@
         },
         methods: {
             handleChange : function (event){
-
-              const selectedOptionKey = event.target.value;
+              console.log(event)
+              console.log(JSON.stringify(event))
+              /*
+              const selectedOptionKey = event;
               const selectedOption = this.getOption('columns')[selectedOptionKey];
               if (selectedOption) {
                 this.inputType = selectedOption.input_type;
               } else {
                 this.inputType = 'text';
-              }
+              }*/
 
               this.data = ''
                 let newValue = {
