@@ -19,7 +19,7 @@
             </select>
 
           <template v-if="inputType === 'number'">
-            <input type="text"
+            <input type="number"
                    v-model="data"
                    class="block w-full form-control-sm form-input form-input-bordered"
                    @change="handleChange">
