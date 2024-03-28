@@ -14,7 +14,6 @@
                         v-for="(value, key) in this.getOption('columns')"
                         :value="key"
                         v-html="value.name"
-                        @change="handleInput"
                 >
                 </option>
             </select>
@@ -68,6 +67,15 @@
         },
         methods: {
             handleChange : function (event){
+
+              const selectedOptionKey = event.target.value;
+              const selectedOption = this.getOption('columns')[selectedOptionKey];
+              if (selectedOption) {
+                this.inputType = selectedOption.input_type;
+              } else {
+                this.inputType = 'text';
+              }
+
               this.data = ''
                 let newValue = {
                     column : this.column,
@@ -100,10 +108,6 @@
 
                 return null;
             },
-
-          handleInput : function (type){
-            this.type = type
-          },
         },
         computed: {
             filter() {
