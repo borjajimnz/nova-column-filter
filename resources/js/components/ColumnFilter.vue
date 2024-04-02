@@ -85,10 +85,9 @@
             },
 
             getOption(name){
-                let key = _.findKey(this.options, (o) => o.name === name)
-
-                if(key)
-                    return this.options[key].value;
+                if (name === 'columns') {
+                  return JSON.parse(this.options[0].value)
+                }
 
                 let obj = _.find(this.options, (o) => o.value === name)
 
@@ -97,6 +96,17 @@
 
                 return null;
             },
+          getAllKeys(obj, targetKey, keys = []) {
+            for (let key in obj) {
+              if (typeof obj[key] === 'object') {
+                if (key === targetKey) {
+                  keys.push(Object.keys(obj[key]));
+                }
+                getAllKeys(obj[key], targetKey, keys);
+              }
+            }
+            return keys.flat();
+          },
           resetValue(){
               this.data = ''
 

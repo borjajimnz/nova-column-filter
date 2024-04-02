@@ -1,4 +1,12 @@
-let mix = require('laravel-mix')
+const mix = require('laravel-mix')
 
-mix.setPublicPath('dist')
-   .js('resources/js/filter.js', 'js')
+require('./nova.mix')
+require('mix-tailwindcss')
+
+mix
+    .setPublicPath('dist')
+    .js('resources/js/filter.js', 'js')
+    .vue({ version: 3 })
+    .postCss('resources/css/filter.css', 'css')
+    .tailwind()
+    .nova('philperusse/nova-column-filter')

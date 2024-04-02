@@ -18,14 +18,14 @@ class ColumnFilter extends Filter
             $query->where(...$args->all());
     }
     
-    public function columns()
+    public function columns(): array
     {
         return [
             //bud l
         ];
     }
 
-    public function operators()
+    public function operators(): array
     {
         return [
             '=' => '&equals;',
@@ -36,7 +36,7 @@ class ColumnFilter extends Filter
         ];
     }
     
-    public function options( NovaRequest $request )
+    public function options(NovaRequest $request): array
     {
         return [
             'columns' => $this->columns(),
